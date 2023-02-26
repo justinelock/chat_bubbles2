@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS = 16;
+const double BUBBLE_RADIUS = 12;
 
 ///basic chat bubble type
 ///
@@ -72,37 +72,17 @@ class BubbleNormal extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-        isSender
-            ? Expanded(
-                child: SizedBox(
-                  width: 5,
-                ),
-              )
-            : Container(),
+        _buildExpanded(),
+
+        ///
         Container(
           color: Colors.transparent,
           constraints:
               BoxConstraints(maxWidth: MediaQuery.of(context).size.width * .8),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
             child: Container(
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(bubbleRadius),
-                  topRight: Radius.circular(bubbleRadius),
-                  bottomLeft: Radius.circular(tail
-                      ? isSender
-                          ? bubbleRadius
-                          : 0
-                      : BUBBLE_RADIUS),
-                  bottomRight: Radius.circular(tail
-                      ? isSender
-                          ? 0
-                          : bubbleRadius
-                      : BUBBLE_RADIUS),
-                ),
-              ),
+              decoration: _buildBoxDecoration(),
               child: Stack(
                 children: <Widget>[
                   Padding(
@@ -115,21 +95,57 @@ class BubbleNormal extends StatelessWidget {
                       textAlign: TextAlign.left,
                     ),
                   ),
-                  stateIcon != null && stateTick
-                      ? Positioned(
-                          bottom: 4,
-                          right: 6,
-                          child: stateIcon,
-                        )
-                      : SizedBox(
-                          width: 1,
-                        ),
+
+                  ///
+                  _buildDeliveredAndSeen(stateIcon, stateTick),
                 ],
               ),
             ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildExpanded() {
+    return isSender
+        ? Expanded(
+            child: SizedBox(
+              width: 5,
+            ),
+          )
+        : Container();
+  }
+
+  Widget _buildDeliveredAndSeen(Icon? stateIcon, bool stateTick) {
+    return stateIcon != null && stateTick
+        ? Positioned(
+            bottom: 4,
+            right: 6,
+            child: stateIcon,
+          )
+        : SizedBox(
+            width: 1,
+          );
+  }
+
+  BoxDecoration _buildBoxDecoration() {
+    return BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(bubbleRadius),
+        topRight: Radius.circular(bubbleRadius),
+        bottomLeft: Radius.circular(tail
+            ? isSender
+                ? bubbleRadius
+                : 0
+            : BUBBLE_RADIUS),
+        bottomRight: Radius.circular(tail
+            ? isSender
+                ? 0
+                : bubbleRadius
+            : BUBBLE_RADIUS),
+      ),
     );
   }
 }

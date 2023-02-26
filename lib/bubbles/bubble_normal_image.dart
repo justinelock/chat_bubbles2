@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS_IMAGE = 16;
+const double BUBBLE_RADIUS_IMAGE = 12;
 
 ///basic image bubble type
 ///
@@ -79,59 +79,33 @@ class BubbleNormalImage extends StatelessWidget {
 
     return Row(
       children: <Widget>[
-        isSender
-            ? const Expanded(
-                child: SizedBox(
-                  width: 5,
-                ),
-              )
-            : Container(),
+        _buildExpanded(),
+
+        ///
         Padding(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          padding: const EdgeInsets.fromLTRB(12, 8, 12, 8),
           child: Container(
             constraints: BoxConstraints(
-                maxWidth: MediaQuery.of(context).size.width * .5,
-                maxHeight: MediaQuery.of(context).size.width * .5),
+                maxWidth: MediaQuery.of(context).size.width * .75,
+                maxHeight: MediaQuery.of(context).size.width * .75),
             child: GestureDetector(
                 child: Hero(
                   tag: id,
                   child: Stack(
                     children: [
                       Container(
-                        decoration: BoxDecoration(
-                          color: color,
-                          borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(bubbleRadius),
-                            topRight: Radius.circular(bubbleRadius),
-                            bottomLeft: Radius.circular(tail
-                                ? isSender
-                                    ? bubbleRadius
-                                    : 0
-                                : BUBBLE_RADIUS_IMAGE),
-                            bottomRight: Radius.circular(tail
-                                ? isSender
-                                    ? 0
-                                    : bubbleRadius
-                                : BUBBLE_RADIUS_IMAGE),
-                          ),
-                        ),
+                        decoration: _buildBoxDecoration(),
                         child: Padding(
-                          padding: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.all(0.5),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(bubbleRadius),
                             child: image,
                           ),
                         ),
                       ),
-                      stateIcon != null && stateTick
-                          ? Positioned(
-                              bottom: 4,
-                              right: 6,
-                              child: stateIcon,
-                            )
-                          : SizedBox(
-                              width: 1,
-                            ),
+
+                      ///
+                      _buildDeliveredAndSeen(stateIcon, stateTick),
                     ],
                   ),
                 ),
@@ -147,6 +121,48 @@ class BubbleNormalImage extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+
+  Widget _buildExpanded() {
+    return isSender
+        ? const Expanded(
+            child: SizedBox(
+              width: 5,
+            ),
+          )
+        : Container();
+  }
+
+  Widget _buildDeliveredAndSeen(Icon? stateIcon, bool stateTick) {
+    return stateIcon != null && stateTick
+        ? Positioned(
+            bottom: 4,
+            right: 6,
+            child: stateIcon,
+          )
+        : SizedBox(
+            width: 1,
+          );
+  }
+
+  BoxDecoration _buildBoxDecoration() {
+    return BoxDecoration(
+      color: color,
+      borderRadius: BorderRadius.only(
+        topLeft: Radius.circular(bubbleRadius),
+        topRight: Radius.circular(bubbleRadius),
+        bottomLeft: Radius.circular(tail
+            ? isSender
+                ? bubbleRadius
+                : 0
+            : BUBBLE_RADIUS_IMAGE),
+        bottomRight: Radius.circular(tail
+            ? isSender
+                ? 0
+                : bubbleRadius
+            : BUBBLE_RADIUS_IMAGE),
+      ),
     );
   }
 }

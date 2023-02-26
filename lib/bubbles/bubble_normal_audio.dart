@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const double BUBBLE_RADIUS_AUDIO = 16;
+const double BUBBLE_RADIUS_AUDIO = 12;
 
 ///basic chat bubble type audio message widget
 ///
