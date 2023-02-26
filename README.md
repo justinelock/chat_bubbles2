@@ -14,6 +14,7 @@ Add this to your package's `pubspec.yaml` file:
 
 ```yaml
 dependencies:
+  # original
   chat_bubbles: ^1.4.1
 ```
 
@@ -22,6 +23,7 @@ dependencies:
 Then you just have to import the package with
 
 ```dart
+/// original
 import 'package:chat_bubbles/chat_bubbles.dart'
 ```
 
@@ -30,6 +32,42 @@ Now you can use this plugin to implement various types of Chat Bubbles, Audio Ch
 ## Examples
 
 ### iMessage's bubble example
+
+### 2023.02.26 new add and update
+
+<img src="images/screenshots/text_image_file.jpg"  width="220"/>
+
+```dart
+/// image with text
+BubbleNormalTextImage(
+    id: 'string or stm.',
+    node: item,
+    isSender: isSender,
+    backgroundColor: Color(0xFFEC5428),
+    delivered: true,
+),
+
+/// just text    
+BubbleNormalText(
+    node: item,
+    isSender: isSender,
+    backgroundColor: Color(0xFF1B97F3),
+    delivered: true,
+    textStyle: TextStyle(
+    fontSize: 16,
+    color: Colors.white,
+    ),
+),
+
+/// file with text
+BubbleNormalTextFile(
+    node: item,
+    text: '${item.content},${metaJson.type}',
+    isSender: isSender,
+    backgroundColor: Color(0xFFEC5428),
+    delivered: true,
+),
+```
 
 <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/imsg.png?raw=true"  width="250" height="190" />
 
@@ -75,7 +113,6 @@ BubbleSpecialThree(
 ### Single bubble example
 
 <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/single_bubble.png?raw=true"  width="220" height="60" />
-
 
 ```dart
   BubbleSpecialOne(
@@ -172,6 +209,7 @@ MessageBar(
 ```
 
 ### Main example (Chat View)
+
 <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_12_29_main1.jpg?raw=true"  width="235" height="460" /> <img src="https://github.com/prahack/chat_bubbles/blob/master/images/screenshots/2022_12_29_main2.jpg?raw=true"  width="235" height="460" />
 
 Checkout the plugin example to figure out more.

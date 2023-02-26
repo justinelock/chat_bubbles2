@@ -1,3 +1,19 @@
+## [1.4.x] - 26/02/2023
+- add 3 dependencies
+  
+  bubble_normal_text.dart
+  
+  bubble_normal_text_file.dart
+  
+  bubble_normal_text)image.dart
+
+- update & add yaml
+  
+  cached_network_image 
+  
+  svg_icon
+    
+
 ## [1.4.1] - 26/01/2023
 
 * Support up-to-date dependencies
