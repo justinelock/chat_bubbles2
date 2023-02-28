@@ -136,7 +136,8 @@ class MyHomePageState extends State<MyHomePage> {
                       isSender: isSender,
                       backgroundColor: Color(0xFFEC5428),
                       delivered: true,
-                      hasImage: item.caption != '',
+                      //hasImage: item.caption != '',
+                      hasImage: isSender,
                     );
                     _chatList.add(fileWidget);
                   }
