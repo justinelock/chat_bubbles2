@@ -93,12 +93,16 @@ class BubbleNormalText2 extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.network(
-                        node.caption!,
-                        width: maxWidth,
-                        height: maxWidth,
-                        fit: BoxFit.cover,
-                      ),
+                      buildImage(node.caption!, boxConstraints: BoxConstraints(
+                        //minHeight: maxWidth * 0.75, // if this, fit: BoxFit.cover is fine
+                        maxWidth: maxWidth,
+                      )),
+                      // Image.network(
+                      //   node.caption!,
+                      //   width: maxWidth,
+                      //   height: maxWidth,
+                      //   fit: BoxFit.cover,
+                      // ),
                     ],
                   ),
 
