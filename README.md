@@ -37,6 +37,9 @@ Now you can use this plugin to implement various types of Chat Bubbles, Audio Ch
 
 <img src="images/screenshots/text_image_file2.jpg"  width="220"/>
 
+<img src="images/screenshots/text_image_file2.gif"  width="220"/>
+
+
 ```dart
 /// image with text
 BubbleNormalText2(
