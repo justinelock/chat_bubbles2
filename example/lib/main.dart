@@ -126,6 +126,20 @@ class MyHomePageState extends State<MyHomePage> {
                   //   sent: true,
                   // );
                   // _chatList.add(audioWidget);
+                } else if (item.type == 4) {
+                  // Random().nextInt(2) == 0 ? item.content! : ''
+                  MetaJson? metaJson = item.metaJson;
+                  if (metaJson != null) {
+                    Widget fileWidget = BubbleNormalText2(
+                      node: item,
+                      //text: '${item.content},${metaJson.type}',
+                      isSender: isSender,
+                      backgroundColor: Color(0xFFEC5428),
+                      delivered: true,
+                      hasImage: item.caption != '',
+                    );
+                    _chatList.add(fileWidget);
+                  }
                 }
               });
               if (_chatList!.isNotEmpty && _chatList!.length > 1) {

@@ -33,6 +33,22 @@ Now you can use this plugin to implement various types of Chat Bubbles, Audio Ch
 
 ### iMessage's bubble example
 
+### 2023.02.28 new add and update
+
+<img src="images/screenshots/text_image_file.jpg"  width="220"/>
+
+```dart
+/// image with text
+BubbleNormalText2(
+    node: item,
+    isSender: isSender,
+    backgroundColor: Color(0xFFEC5428),
+    delivered: true,
+    hasImage: item.caption != '',
+),
+
+```
+
 ### 2023.02.26 new add and update
 
 <img src="images/screenshots/text_image_file.jpg"  width="220"/>

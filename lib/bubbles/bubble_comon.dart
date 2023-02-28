@@ -1,11 +1,43 @@
 import 'package:flutter/material.dart';
 import "package:cached_network_image/cached_network_image.dart";
 
+import 'key_value.dart';
+
 String getAssets(isPdf) {
   if (isPdf) {
     return 'assets/icon_pdf_color.svg';
   }
   return 'assets/icon_unknown_file.svg';
+}
+
+KeyValue<bool, Widget> buildIconState({bool sent = false, bool delivered = false, bool seen = false}) {
+  bool stateTick = false;
+  Icon? stateIcon;
+  if (sent) {
+    stateTick = true;
+    stateIcon = const Icon(
+      Icons.done,
+      size: 18,
+      color: Color(0xFF97AD8E),
+    );
+  }
+  if (delivered) {
+    stateTick = true;
+    stateIcon = const Icon(
+      Icons.done_all,
+      size: 18,
+      color: Color(0xFF97AD8E),
+    );
+  }
+  if (seen) {
+    stateTick = true;
+    stateIcon = const Icon(
+      Icons.done_all,
+      size: 18,
+      color: Color(0xFF92DEDA),
+    );
+  }
+  return KeyValue(key: stateTick, value: stateIcon);
 }
 
 Widget buildAvatar(String tag, Color backgroundColor, {Function()? onTap}) {
